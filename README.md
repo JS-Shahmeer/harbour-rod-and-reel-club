@@ -22,7 +22,11 @@ npm run dev
 Home, About (history and leadership), Membership, Fishing, Tournaments, Events, Gallery and album pages,
 H.O.P.E., News and article pages, Charters, Contact (saves inquiries to the database), and a Members' Dock placeholder.
 
-## Roadmap
+## Modules
+
+See [docs/MODULES.md](docs/MODULES.md) for the module breakdown.
+
+## Roadmap (summary)
 
 1. Public site at design parity (this step)
 2. Member login, members-only area, directory, Stripe membership payments
