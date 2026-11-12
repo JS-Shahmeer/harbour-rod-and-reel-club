@@ -7,7 +7,7 @@ import { Menu, X } from 'lucide-react';
 import Logo from '@/components/brand/Logo';
 import { NAV_LINKS } from '@/lib/navigation';
 
-export default function Header() {
+export default function Header({ signedIn = false }: { signedIn?: boolean }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const isActive = (to: string) => (to === '/' ? pathname === '/' : pathname.startsWith(to));
@@ -24,7 +24,7 @@ export default function Header() {
           </Link>
 
           <div className="hidden lg:flex items-center gap-6">
-            <Link href="/members" className="text-[11px] font-semibold uppercase tracking-[0.16em] text-offwhite/80 hover:text-sand">Member Login</Link>
+            <Link href="/members" className="text-[11px] font-semibold uppercase tracking-[0.16em] text-offwhite/80 hover:text-sand">{signedIn ? "Members' Dock" : 'Member Login'}</Link>
             <Link href="/membership" className="bg-seagreen hover:bg-[#356b65] px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] rounded-[2px]">Join the Club</Link>
           </div>
 
@@ -57,7 +57,7 @@ export default function Header() {
             </Link>
           ))}
           <div className="mt-5 flex flex-col gap-3">
-            <Link href="/members" onClick={() => setOpen(false)} className="text-center border border-offwhite/40 py-3 text-[12px] font-semibold uppercase tracking-[0.16em]">Member Login</Link>
+            <Link href="/members" onClick={() => setOpen(false)} className="text-center border border-offwhite/40 py-3 text-[12px] font-semibold uppercase tracking-[0.16em]">{signedIn ? "Members' Dock" : 'Member Login'}</Link>
             <Link href="/membership" onClick={() => setOpen(false)} className="text-center bg-seagreen py-3 text-[12px] font-semibold uppercase tracking-[0.16em]">Join the Club</Link>
           </div>
         </nav>

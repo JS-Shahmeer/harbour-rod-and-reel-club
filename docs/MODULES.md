@@ -6,8 +6,8 @@ branch and merged into `main` through a pull request.
 | # | Module | Branch | Status |
 |---|--------|--------|--------|
 | 1 | Website design & development (UI) | `module-1-ui` | Done |
-| 2 | Member area | `module-2-member-area` | Next |
-| 3 | Membership & payments | `module-3-membership-payments` | Planned |
+| 2 | Member area | `module-2-member-area` | In review |
+| 3 | Membership & payments | `module-3-membership-payments` | Next |
 | 4 | Leaderboard management | `module-4-leaderboard` | Planned |
 | 5 | Newsletter & content management | `module-5-cms` | Planned |
 | 6 | Merchandise store | `module-6-store` | Planned |
@@ -15,7 +15,8 @@ branch and merged into `main` through a pull request.
 
 ## 1. Website design & development (UI)
 
-Next.js port of the approved Base44 design, responsive on mobile, tablet and desktop.
+Next.js port of the approved Base44 design, responsive on mobile, tablet and desktop. UI only: content is static
+in `src/lib/content.ts` and the site needs no database or environment variables.
 
 - Club information and history (About, history timeline, leadership)
 - Meetings, events and fishing updates (Events, Tournaments, Fishing)
@@ -31,6 +32,9 @@ Next.js port of the approved Base44 design, responsive on mobile, tablet and des
 - Member directory with per-member privacy setting
 - Access restricted by membership status (active / pending / expired)
 - Roles: member, contributor, admin
+- Admin page (`/admin/members`) to approve members, set status, plan, paid-through date and role
+
+Needs `DATABASE_URL` and `AUTH_SECRET` (see `.env.example`). Public pages stay static.
 
 ## 3. Membership & payments
 
