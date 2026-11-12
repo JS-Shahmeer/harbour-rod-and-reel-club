@@ -1,0 +1,64 @@
+// Database for the member area (Module 2) onwards.
+// Public club content is still static in src/lib/content.ts until the CMS module.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  MEMBER
+  CONTRIBUTOR
+  ADMIN
+}
+
+enum MembershipStatus {
+  PENDING
+  ACTIVE
+  EXPIRED
+  CANCELLED
+}
+
+model User {
+  id              String               @id @default(cuid())
+  email           String               @unique
+  name            String
+  passwordHash    String
+  phone           String?
+  city            String?
+  boatName        String?
+  bio             String?
+  showInDirectory Boolean              @default(true)
+  role            Role                 @default(MEMBER)
+  membership      Membership?
+  resetTokens     PasswordResetToken[]
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+}
+
+model Membership {
+  id        String           @id @default(cuid())
+  userId    String           @unique
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status    MembershipStatus @default(PENDING)
+  plan      String?
+  startedAt DateTime?
+  expiresAt DateTime?
+  notes     String?
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+}
+
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  tokenHash String    @unique
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+}
