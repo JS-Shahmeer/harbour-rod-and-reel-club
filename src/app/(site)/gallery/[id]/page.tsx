@@ -3,6 +3,11 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { getAlbum } from '@/lib/data';
 import { fmt } from '@/lib/format';
+import { ALBUMS } from '@/lib/content';
+
+export function generateStaticParams() {
+  return ALBUMS.map((a) => ({ id: a.id }));
+}
 
 export default async function AlbumDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;

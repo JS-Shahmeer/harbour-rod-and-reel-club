@@ -5,12 +5,17 @@ import { ArrowLeft } from 'lucide-react';
 import MembershipCTA from '@/components/home/MembershipCTA';
 import { getArticle } from '@/lib/data';
 import { fmt } from '@/lib/format';
+import { ARTICLES } from '@/lib/content';
 
 type Params = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const article = await getArticle((await params).slug);
   return article ? { title: article.title, description: article.excerpt ?? undefined } : {};
+}
+
+export function generateStaticParams() {
+  return ARTICLES.map((a) => ({ slug: a.slug }));
 }
 
 export default async function ArticlePage({ params }: Params) {

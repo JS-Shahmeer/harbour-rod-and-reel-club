@@ -5,22 +5,19 @@ Next.js website for Harbour Rod & Reel Club (Huntington Harbour, CA), rebuilt fr
 ## Stack
 
 - Next.js 15 (App Router, TypeScript) and Tailwind CSS 3, with the Base44 colours, fonts and components
-- PostgreSQL through Prisma (Supabase or Neon in production)
+- Module 1 is UI only: club content is static in `src/lib/content.ts`. The database arrives with the member area module.
 
 ## Getting started
 
 ```bash
 npm install
-cp .env.example .env       # set DATABASE_URL
-npx prisma db push         # create tables
-npm run db:seed            # load the starter content from Base44
 npm run dev
 ```
 
 ## Pages
 
 Home, About (history and leadership), Membership, Fishing, Tournaments, Events, Gallery and album pages,
-H.O.P.E., News and article pages, Charters, Contact (saves inquiries to the database), and a Members' Dock placeholder.
+H.O.P.E., News and article pages, Charters, Contact (form UI with validation), and a Members' Dock placeholder.
 
 ## Modules
 
